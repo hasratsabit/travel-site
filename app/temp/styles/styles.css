@@ -1,0 +1,13 @@
+body {
+  color: #5F5F7B;
+  padding: 10px;
+  -webkit-columns: 300px 2;
+     -moz-columns: 300px 2;
+          columns: 300px 2;
+}
+body p {
+  font-size: 10px;
+}
+body a {
+  text-decoration: none;
+}

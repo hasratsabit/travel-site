@@ -1,0 +1,14 @@
+$darkPurple: #5F5F7B;
+
+body {
+  color: $darkPurple;
+  padding: 10px;
+  columns: 300px 2;
+
+  p {
+    font-size: 10px;
+  }
+  a {
+    text-decoration: none;
+  }
+}
