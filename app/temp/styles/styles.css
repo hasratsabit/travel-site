@@ -470,6 +470,11 @@ img {
   height: auto;
 }
 
+* {
+  /*This brings columns in one line. Otherwise columns broke*/
+  box-sizing: border-box;
+}
+
 /*Media Query Mixins*/
 
 .large-hero {
@@ -561,9 +566,10 @@ img {
 }
 
 .wrapper {
+  overflow: hidden;
   padding-left: 18px;
   padding-right: 18px;
-  max-width: 1200px;
+  max-width: 1236px;
   margin-left: auto;
   margin-right: auto;
 
@@ -573,9 +579,22 @@ img {
   max-width: 976px;
 }
 
+/*This offsets the paddings in the inner paddings. */
+
 .wrapper .wrapper {
   padding-left: 0;
   padding-right: 0;
+}
+
+.wrapper--b-margin {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 530px) {
+
+  .wrapper--b-margin {
+    margin-bottom: 3.875rem;
+  }
 }
 
 .page-section {
@@ -642,4 +661,45 @@ img {
 
 .headline--b-margin-large {
   margin-bottom: 1.6em;
+}
+
+/*This helps with content overlay*/
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/*This along overflow hidden in the wrapper removes extra space on the right*/
+
+.row--gutters {
+  margin-right: -65px;
+}
+
+/*This helps with content overlay*/
+
+.row--gutters > div {
+  padding-right: 65px;
+}
+
+@media (min-width: 800px) {
+
+  .row__medium-4 {
+    float: left;
+    width: 33.33%;
+  }
+
+  .row__medium-4--larger {
+    width: 37%;
+  }
+
+  .row____medium-8 {
+    float: left;
+    width: 66.66%;
+  }
+
+  .row__medium-8--smaller {
+    width: 63%;
+  }
 }

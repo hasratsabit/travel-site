@@ -18,3 +18,12 @@
     @mixin-content;
   }
 }
+
+@define-mixin clearFix {
+  /*This helps with content overlay*/
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
