@@ -25,6 +25,11 @@ gulp.task('watch', function() {
     gulp.start('cssInject')
   });
 
+  // This automates webpack and gulp together
+  watch('./app/assets/scripts/**/*.js', function() {
+    gulp.start('scriptsRefresh');
+  });
+
 });
 
 // This applies each css update on the fly.
@@ -32,4 +37,9 @@ gulp.task('watch', function() {
 gulp.task('cssInject', ['styles'], function() {
   return gulp.src('./app/temp/styles/styles.css')
     .pipe(browserSync.stream());
+});
+
+// This refereshes the browser automatically. The dependency makes sure the script file runs first which is synched with webpack.
+gulp.task('scriptsRefresh', ['scripts'], function() {
+  browserSync.reload();
 })
