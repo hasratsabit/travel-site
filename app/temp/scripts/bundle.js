@@ -113,6 +113,7 @@ var MobileMenu = function () {
       this.menuContent.toggleClass('site-header__menu-content--is-visible');
       // This classes is created to add bg color for header in css.
       this.siteHeader.toggleClass('site-header--is-expanded');
+      this.menuIcon.toggleClass('site-header__menu-icon--close-x');
     }
   }]);
 
