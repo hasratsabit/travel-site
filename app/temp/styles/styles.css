@@ -1054,6 +1054,12 @@ a {
   padding: 10px 0;
   z-index: 2;
   width: 100%;
+  -webkit-transition: background-color .3s ease-out;
+  transition: background-color .3s ease-out;
+}
+
+.site-header--is-expanded {
+  background-color: rgba(47,85,114, .55);
 }
 
 @media (min-width: 800px) {
@@ -1063,8 +1069,11 @@ a {
   }
 }
 
-.site-header__btn-container {
-  float: right;
+@media (min-width: 800px) {
+
+  .site-header__btn-container {
+    float: right;
+  }
 }
 
 .site-header__logo {
@@ -1099,6 +1108,7 @@ a {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 5;
 }
 
 @media (min-width: 800px) {
@@ -1109,18 +1119,45 @@ a {
 }
 
 .site-header__menu-content {
-  display: none;
+  opacity: 0;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+  position: relative;
+  z-index: -10;/*The z-index and position is for elements to be not clicked when opacity is zero.*/
+  padding-top: 90px;
+  text-align: center;
 }
 
 @media (min-width: 800px) {
 
   .site-header__menu-content {
-    display: block;
+    opacity: 1;
+    z-index: 1;
+    padding-top: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
+.site-header__menu-content--is-visible {
+  opacity: 1;
+  z-index: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
 .primary-nav--pull-right {
-  float: right;
+  padding-top: 10px;
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav--pull-right {
+    padding-top: 0;
+    float: right;
+  }
 }
 
 .primary-nav ul {
@@ -1138,8 +1175,28 @@ a {
 
 .primary-nav li {
   list-style: none;
-  float: left;
-  padding-right: 20px;
+  display: inline-block;
+  padding-right: 7px;
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav li {
+    padding-right: 20px;
+    float: left;
+    display: block;
+  }
+}
+
+.primary-nav li:last-child {
+  padding-right: 0;
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav li:last-child {
+    padding-right: 20px;
+  }
 }
 
 .primary-nav a {
@@ -1147,5 +1204,16 @@ a {
   display: block;
   font-weight: 300;
   text-decoration: none;
-  padding: 12px 0;
+  padding: 5px 8px;
+  font-size: .8rem;
+  background-color: rgba(47,85,114, .6);
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav a {
+    padding: 12px 0;
+    background-color: transparent;
+    font-size: 1rem;
+  }
 }

@@ -68,18 +68,58 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function Person(firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.greet = function() {
-    console.log("Hello " + this.firstName + " " + this.lastName);
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(1);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MobileMenu = function () {
+  // As soon as the window loads, the constructor will run.
+  // That is we call the events method here.
+  function MobileMenu() {
+    _classCallCheck(this, MobileMenu);
+
+    this.siteHeader = (0, _jquery2.default)('.site-header');
+    this.menuIcon = (0, _jquery2.default)('.site-header__menu-icon');
+    this.menuContent = (0, _jquery2.default)('.site-header__menu-content');
+    this.events();
   }
-}
 
-module.exports = Person;
+  _createClass(MobileMenu, [{
+    key: 'events',
+    value: function events() {
+      // We use the bind method on toggleTheMenu to point to the object itself
+      // Otherwise the this keyword in toggleTheMenu method points to the window object --
+      // Because the toggleTheMenu is called inside events method.
+      this.menuIcon.click(this.toggleTheMenu.bind(this));
+    }
+  }, {
+    key: 'toggleTheMenu',
+    value: function toggleTheMenu() {
+      this.menuContent.toggleClass('site-header__menu-content--is-visible');
+      // This classes is created to add bg color for header in css.
+      this.siteHeader.toggleClass('site-header--is-expanded');
+    }
+  }]);
 
+  return MobileMenu;
+}();
+
+exports.default = MobileMenu;
 
 /***/ }),
 /* 1 */
@@ -10312,15 +10352,16 @@ return jQuery;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Person = __webpack_require__(0);
-var $ = __webpack_require__(1);
+"use strict";
 
-var john = new Person("John", "Doe")
-john.greet();
 
-var jane = new Person("Jane", "Doe");
-jane.greet();
+var _MobileMenu = __webpack_require__(0);
 
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mobileMenu = new _MobileMenu2.default();
 
 /***/ })
 /******/ ]);
