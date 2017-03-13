@@ -1,0 +1,12 @@
+
+.reveal-item {
+  opacity: 0;
+  transition: all 1.5s ease-out;
+  transform: scale(1.15);/*When it comes from hidding scale back to one when visible.*/
+
+
+  &--is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
