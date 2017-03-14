@@ -4,12 +4,13 @@
 
   {{#first}}
     .icon {
-      background-image: url('/assets/images/sprites/{{{sprite}}}');
+      background-image: url('../../assets/images/sprites/{{{sprite}}}');
     }
 
     /*This is added after modernizr config to support browsers with no svg support*/
+    /*The replaceSvgWithPng is a function that is running in sprite.js */
     .no-svg .icon {
-      background-image: url('/assets/images/sprites/{{#replaceSvgWithPng}}{{{sprite}}}{{/replaceSvgWithPng}}');
+      background-image: url('../../assets/images/sprites/{{#replaceSvgWithPng}}{{{sprite}}}{{/replaceSvgWithPng}}');
     }
   {{/first}}
   .icon--{{base}} {
