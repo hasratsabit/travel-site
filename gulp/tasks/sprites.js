@@ -3,10 +3,28 @@ var gulp = require('gulp');
 var svgSprite = require('gulp-svg-sprite');
 var rename = require('gulp-rename');
 var del = require('del');
+var svg2png = require('gulp-svg2png');
 
 var config = {
+  // This creates space between icons when it is sprite.
+  // Otherwise there will be lines over some icons.
+  shape: {
+    spacing: {
+      padding: 1
+    }
+  },
   mode: {
     css: {
+      variables: {
+        // This method is added after modernizr config
+        // The method is added to gulp template sprite.css file for older browsers when .no-svg is added
+        replaceSvgWithPng: function() {
+          return function(sprite, render) {
+            // Takes any sprite icon and removes the svg addition and adds png
+            return render(sprite).split('.svg').join('.png');
+          }
+        }
+      },
       // Cleans the svg name.
       sprite: 'sprite.svg',
       render: {
@@ -31,11 +49,22 @@ gulp.task('createSprite', ['beginClean'], function() {
     .pipe(gulp.dest('./app/temp/sprite/'));
 });
 
+// Creates svg to png copy to add support for older browser
+// It takes the creatSprite as its dependency
+gulp.task('createPngCopy', ['createSprite'], function() {
+  return gulp.src('./app/temp/sprite/css/*.svg')
+    .pipe(svg2png())
+    .pipe(gulp.dest('./app/temp/sprite/css'));
+});
 // This copies the icons themselves from the root temp folder to the working folder
-gulp.task('copySpriteGraphic', ['createSprite'], function() {
-  return gulp.src('./app/temp/sprite/css/**/*.svg')
+// DEPRECATED: First this task had createSprite as its dependency, but after createPngCopy task is created, this is deprecated.
+// Instead of createSprite we add createPngCopy as its dependency
+gulp.task('copySpriteGraphic', ['createPngCopy'], function() {
+  return gulp.src('./app/temp/sprite/css/**/*.{svg,png}')
     .pipe(gulp.dest('./app/assets/images/sprites'));
-})
+});
+
+
 
 // Copies the sprite.css file from the compiled temp folder to the modules
 // We need to add the createSprite as dependency. So first the file is created and then deleted.
@@ -52,4 +81,4 @@ gulp.task('endClean',['copySpriteGraphic', 'copySpriteCSS'], function() {
 });
 
 // This initializes all the tasks.
-gulp.task('icons', ['beginClean', 'createSprite', 'copySpriteGraphic', 'copySpriteCSS', 'endClean']);
+gulp.task('icons', ['beginClean', 'createSprite', 'createPngCopy', 'copySpriteGraphic', 'copySpriteCSS', 'endClean']);

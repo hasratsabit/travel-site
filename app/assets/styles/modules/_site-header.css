@@ -42,7 +42,7 @@
 
       /*When scrolling, the logo should shrink*/
       .site-header--dark & {
-        transform: scale(.57);
+        transform: scale(.56);
       }
     }
   }
