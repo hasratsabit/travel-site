@@ -15,7 +15,7 @@ class StickyHeader {
     this.addSmoothScrolling();
   }
 
-   // When clicked on the nav links, creates smooth move to that section. 
+   // When clicked on the nav links, creates smooth move to that section.
    // It is a plugin that needs to be imported.
   addSmoothScrolling() {
     this.headerLinks.smoothScroll();
