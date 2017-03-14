@@ -25,6 +25,7 @@
 
     @mixin atMedium {
       &.lazyloaded {
+        /*The path ../../ is later changed for deploying. During build use the usual path.*/
         background: url('../../assets/images/testimonials-bg.jpg') top center no-repeat;
         background-size: cover;
       }
