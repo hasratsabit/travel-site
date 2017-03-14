@@ -11214,6 +11214,8 @@ var StickyHeader = function () {
   function StickyHeader() {
     _classCallCheck(this, StickyHeader);
 
+    // This solves the problem caused by lazyload that interrupts the waypoint
+    this.lazyImages = (0, _jquery2.default)('.lazyload');
     this.siteHeader = (0, _jquery2.default)('.site-header');
     this.headerTriggerElement = (0, _jquery2.default)('.large-hero__title');
     this.createHeaderWaypoint();
@@ -11222,13 +11224,24 @@ var StickyHeader = function () {
     this.headerLinks = (0, _jquery2.default)('.primary-nav a');
     this.createPageSectionWaypoint();
     this.addSmoothScrolling();
+    this.refereshWaypoints();
   }
 
-  // When clicked on the nav links, creates smooth move to that section.
-  // It is a plugin that needs to be imported.
+  // This solves the problem caused by lazyload that interrupts the waypoint
 
 
   _createClass(StickyHeader, [{
+    key: "refereshWaypoints",
+    value: function refereshWaypoints() {
+      this.lazyImages.on('load', function () {
+        Waypoint.refreshAll();
+      });
+    }
+
+    // When clicked on the nav links, creates smooth move to that section.
+    // It is a plugin that needs to be imported.
+
+  }, {
     key: "addSmoothScrolling",
     value: function addSmoothScrolling() {
       this.headerLinks.smoothScroll();

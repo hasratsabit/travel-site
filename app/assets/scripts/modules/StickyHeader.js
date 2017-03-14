@@ -5,6 +5,8 @@ import waypoints from "../../../../node_modules/waypoints/lib/noframework.waypoi
 
 class StickyHeader {
   constructor() {
+    // This solves the problem caused by lazyload that interrupts the waypoint
+    this.lazyImages = $('.lazyload');
     this.siteHeader = $('.site-header');
     this.headerTriggerElement = $('.large-hero__title');
     this.createHeaderWaypoint();
@@ -13,6 +15,14 @@ class StickyHeader {
     this.headerLinks = $('.primary-nav a');
     this.createPageSectionWaypoint();
     this.addSmoothScrolling();
+    this.refereshWaypoints();
+  }
+
+  // This solves the problem caused by lazyload that interrupts the waypoint
+  refereshWaypoints() {
+    this.lazyImages.on('load', function() {
+      Waypoint.refreshAll();
+    });
   }
 
    // When clicked on the nav links, creates smooth move to that section.
