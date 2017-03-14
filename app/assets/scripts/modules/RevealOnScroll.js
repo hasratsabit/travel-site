@@ -1,6 +1,6 @@
 import $ from "jquery";
 // This library is used for scrolling the window
-import waypoints from "../../../../node_modules/waypoints/lib/noframework.waypoints"
+import waypoints from "../../../../node_modules/waypoints/lib/noframework.waypoints";
 
 class RevealOnScroll {
 

@@ -1065,7 +1065,12 @@ a {
 @media (min-width: 800px) {
 
   .site-header {
-    background-color: rgba(47,85,114, 0.3);
+    position: fixed;
+    background-color: rgba(47,85,114, 0.3);/*This modifier is for sticky js nav*/
+  }
+
+  .site-header--dark {
+    background-color: rgba(23, 51, 72, .85);
   }
 }
 
@@ -1082,6 +1087,10 @@ a {
   left: 50%;
   -webkit-transform: translateX(-50%) scale(.8);
           transform: translateX(-50%) scale(.8);
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out;/*Smooth schrinking for scrolling*/
   -webkit-transform-origin: 50% 0;
           transform-origin: 50% 0;
   background-color: #2f5572;
@@ -1093,7 +1102,12 @@ a {
   .site-header__logo {
     left: auto;
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+            transform: translateX(0);/*When scrolling, the logo should shrink*/
+  }
+
+  .site-header--dark .site-header__logo {
+    -webkit-transform: scale(.57);
+            transform: scale(.57);
   }
 }
 
@@ -1275,6 +1289,10 @@ a {
     padding: 12px 0;
     background-color: transparent;
     font-size: 1rem;
+  }
+
+  .primary-nav a.is-current-link {
+    color: #d59541;
   }
 }
 

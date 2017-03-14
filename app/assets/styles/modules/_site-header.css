@@ -11,7 +11,13 @@
 
 
   @mixin atMedium {
+    position: fixed;
     background-color: rgba($mainBlue, 0.3);
+
+    /*This modifier is for sticky js nav*/
+    &--dark {
+      background-color: rgba(23, 51, 72, .85);
+    }
   }
 
   &__btn-container {
@@ -25,13 +31,19 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%) scale(.8);
+    transition: transform .3s ease-out; /*Smooth schrinking for scrolling*/
     transform-origin: 50% 0;
     background-color: $mainBlue;
     padding: 25px 36px;
 
     @mixin atMedium {
       left: auto;
-      transform: translateX(0)
+      transform: translateX(0);
+
+      /*When scrolling, the logo should shrink*/
+      .site-header--dark & {
+        transform: scale(.57);
+      }
     }
   }
 
